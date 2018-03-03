@@ -1,0 +1,73 @@
+---
+title: 'Capstone: NLP Predictor'
+author: "Jorge Robledo"
+date: "3/3/2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+This presentation is a part of the assignments of Data Products Course week 4 project.
+
+It corresponds to an application built with Shiny and can be executed on the next URL:
+
+https://yorch78.shinyapps.io/MyShinyApp/
+
+The source code and the current presentation have been uploaded to GitHub:
+
+https://github.com/yorch78/DevelopingDataProducts
+
+## Application
+
+This web application shows in a real map information obtained from a dataset shared on the next URL:
+
+https://www.businessintelligence.info/assets/listado-longitud-latitud-municipios-espana.xls
+
+* By selecting a Province, the map will present spots over every city of the selected province.
+
+* By clicking on a random spot, the map will also show a tooltip with the next format:
+
+--- City name                         
+--- Province name                     
+--- Total province population         
+--- Men population - Women population 
+
+## Spanish population data set
+
+In this slide is showed a sample of the data set:
+
+```{r}
+library(readxl)
+url <- "https://www.businessintelligence.info/assets/listado-longitud-latitud-municipios-espana.xls"
+destfile <- "listado_longitud_latitud_municipios_espana.xls"
+download.file(url, destfile)
+municipiosSpain <- read_excel(destfile, skip = 2)
+head(municipiosSpain,5)
+```
+
+## Plotting data in the Map.
+
+```{r echo=FALSE}
+library(leaflet)
+
+content <- paste(
+  "<b>",municipiosSpain$Población,"</b><br>",
+  municipiosSpain$Provincia, "<br>",
+  "Habitantes: <b>", municipiosSpain$Habitantes, "</b><br>",
+  "Hombres: ", municipiosSpain$Hombres, " - ",
+  "Mujeres: ", municipiosSpain$Mujeres
+)
+
+df %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat=municipiosSpain$Latitud,
+             lng=municipiosSpain$Longitud,
+             popup=content,
+             clusterOptions=markerClusterOptions())
+```
+
