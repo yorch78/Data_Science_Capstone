@@ -1,30 +1,23 @@
----
-title: 'Coursera Data Science Capstone:
-NLP Predictor'
-author: "Jorge Robledo"
-date: "3/3/2018"
-output:
-  ioslides_presentation: default
-  slidy_presentation: default
----
+Coursera Data Science Capstone: NLP Predictor
+========================================================
+author: Jorge Robledo
+date: 03/03/2018
+autosize: true
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Introduction
+Introduction
+========================================================
 
 This slide deck presents NLP Predictor, an app that predicts the next word given a phrase entered by the user.
 The prediction makes use of a N-gram corpus previously constructed that contains Four-grams, Tri-grams, Bi-grams and Uni-grams present in a huge set of samples from blogs, news publications and tweets (all of them are formed with english words).
 
-Basically, the user writes a phrase and once he request a prediction for the next word, the algorithm will search the top 10 words more probable considering the N-gram that compounds the model.
+Basically, the user writes a phrase and once he requests a prediction for the next word, the algorithm will search the top 10 words more probable to continue the series considering the N-gram that compounds the model.
 
 All of the code is stored on GitHub and reacheable by clicking the next link: https://github.com/yorch78/Data_Science_Capstone
 
 * N-gram:  sequence of n contiguous words (word-1 word-2 word-3 ... word-n).
 
-
-## The Algorithm
+The Algorithm
+========================================================
 
 NLP Predictor uses the phrase introduced by the user in a input box. After clicking "Predict next word", it will search in the corpus across the Four-gram, Tri-gram, Bi-gram and Uni-gram the most probable words that follow the last introduced.
 
@@ -35,8 +28,8 @@ The data used to make the model is a collection of unstructured sentences from U
 - Split into n-grams and tabulated by frequency counts.
 - Exclude URLs, e-mail, white spaces.
 
-
-## Instructions
+Instructions
+========================================================
 
 1. Type your phrase in the input box.
 2. Every new word included in the phrase will be showed automatically in a separate table "extractedTokens" that shows the splitted words by row.
@@ -44,10 +37,9 @@ The data used to make the model is a collection of unstructured sentences from U
 4. The application will process the input applying the algorithm described previously.
 5. After 1-2 seconds, it will report the results as a plot with 10 bars representing the probability of every word predicted.
 
-## The application.
+Instructions
+========================================================
 
-<img src="/Users/jorge/Desktop/NLP_Predictor.png" width = 780 height = 450;>
+<img src="NLP_Predictor.png" width = 780 height = 450;>
 
 https://yorch78.shinyapps.io/NLP_Predictor/
-
-
